@@ -23,8 +23,13 @@ export class CoffeesResolver {
   async create(createCoffeeInput: CreateCoffeeInput) {
     return this.coffeeService.create(createCoffeeInput);
   }
-  @Mutation(() => Coffee, { name: 'createCoffee' })
+  @Mutation(() => Coffee, { name: 'updateCoffee' })
   async update(id: number, updateCoffeeInput: UpdateCoffeeInput) {
     return this.coffeeService.update(id, updateCoffeeInput);
+  }
+
+  @Mutation(() => Coffee, { name: 'removeCoffee' })
+  async remove(id: number) {
+    return this.coffeeService.remove(id);
   }
 }

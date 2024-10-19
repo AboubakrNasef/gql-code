@@ -40,4 +40,9 @@ export class CoffeesService {
 
     return this.coffeeRepository.save(coffee);
   }
+
+  async remove(id: number) {
+    const coffee = await this.findOne(id);
+    return this.coffeeRepository.remove(coffee);
+  }
 }
