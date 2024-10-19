@@ -1,15 +1,27 @@
-import { Args, ID, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Coffee } from './entites/coffee.entity';
 import { ParseIntPipe } from '@nestjs/common';
+import { CreateCoffeeInput } from './dto/create-coffee.input/create-coffee.input';
+import { CoffeesService } from './coffees.service';
 
 @Resolver()
 export class CoffeesResolver {
+  constructor(private coffeeService: CoffeesService) {}
+
   @Query(() => [Coffee], { name: 'coffees' })
-  async FindAll() {
-    return [];
+  async findAll() {
+    return this.coffeeService.findAll();
   }
+
   @Query(() => Coffee, { name: 'coffee', nullable: true })
-  async FindOne(@Args('id', { type: () => ID }, ParseIntPipe) id: number) {
-    return null;
+  async findOne(@Args('id', { type: () => ID }, ParseIntPipe) id: number) {
+    return this.coffeeService.findOne(id);
+  }
+
+  @Mutation(() => Coffee, { name: 'createCoffee', nullable: true })
+  async create(
+    @Args('createCoffeeInput') createCoffeeInput: CreateCoffeeInput,
+  ) {
+    return this.coffeeService.create(createCoffeeInput);
   }
 }
