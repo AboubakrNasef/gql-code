@@ -1,5 +1,5 @@
 import { InputType } from '@nestjs/graphql';
-import { Flavor } from '../entites/flavor.entity';
+import { Flavor } from '../entities/flavor.entity';
 import { CoffeeType } from 'src/common/enums/coffee-type.enum';
 
 @InputType()

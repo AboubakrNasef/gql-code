@@ -11,6 +11,7 @@ import {
 import { Flavor } from './flavor.entity';
 import { Drink } from 'src/common/interfaces/drink.interface/drink.interface';
 import { CoffeeType } from 'src/common/enums/coffee-type.enum';
+import { loggerMiddleware } from 'src/common/middlewares/logger.middleware';
 
 @Entity()
 @ObjectType({ implements: () => Drink })
@@ -21,6 +22,7 @@ export class Coffee implements Drink {
 
   @Column()
   @MinLength(3)
+  @Field({ middleware: [loggerMiddleware] })
   name: string;
 
   @Column()

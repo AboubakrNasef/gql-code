@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { CreateCoffeeInput } from './dto/create-coffee.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Coffee } from './entites/coffee.entity';
+import { Coffee } from './entities/coffee.entity';
 import { UserInputError } from '@nestjs/apollo';
 import { UpdateCoffeeInput } from './dto/update-coffee.input';
-import { Flavor } from './entites/flavor.entity';
+import { Flavor } from './entities/flavor.entity';
 
 @Injectable()
 export class CoffeesService {
