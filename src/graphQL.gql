@@ -2,11 +2,31 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Coffee {
+type Flavor {
   id: ID!
   name: String!
+  coffees: [Coffee!]!
+}
+
+type Coffee implements Drink {
+  name: String!
+  id: ID!
   brand: String!
-  flavors: [String!]!
+  flavors: [Flavor!]!
+  createdAt: DateTime
+}
+
+interface Drink {
+  name: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Tea implements Drink {
+  name: String!
 }
 
 type Query {
@@ -15,11 +35,7 @@ type Query {
 }
 
 type Mutation {
-  createCoffee(createCoffeeInput: CreateCoffeeInput!): Coffee!
-}
-
-input CreateCoffeeInput {
-  name: String!
-  brand: String!
-  flavors: [String!]!
+  createCoffee: Coffee!
+  updateCoffee: Coffee!
+  removeCoffee: Coffee!
 }

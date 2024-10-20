@@ -6,6 +6,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { CoffeesModule } from './coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Tea } from './teas/entities/tea.entity/tea.entity';
+import { DrinksResolver } from './drinks/drinks.resolver';
 
 @Module({
   imports: [
@@ -24,11 +26,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoSchemaFile: join(process.cwd(), 'src/graphQL.gql'),
       buildSchemaOptions: {
         numberScalarMode: 'integer',
+        orphanedTypes: [Tea],
       },
     }),
     CoffeesModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, DrinksResolver],
 })
 export class AppModule {}
