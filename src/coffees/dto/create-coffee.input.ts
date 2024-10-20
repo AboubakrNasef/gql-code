@@ -4,5 +4,4 @@ import { InputType } from '@nestjs/graphql';
 export class CreateCoffeeInput {
   name: string;
   brand: string;
-  flavors: string[];
 }
